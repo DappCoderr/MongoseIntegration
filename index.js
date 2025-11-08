@@ -1,14 +1,10 @@
-const mongoose = require('mongoose');
+const express = require('express');
 require('dotenv').config();
 
-(async () => {
-  try {
-    await mongoose.connect(process.env.MONGODB_URI);
-    console.log("successfully connected to MongoDB!");
-  } catch (error) {
-    console.log("MongoError:", error);
-  } finally {
-    await mongoose.disconnect();
-    console.log("disconnected");
-  }
-})();
+const app = express();
+
+const PORT = process.env.PORT || 7777;
+
+app.listen(PORT, () => {
+  console.log(`Server stated and listening on PORT - ${PORT}`);
+});
