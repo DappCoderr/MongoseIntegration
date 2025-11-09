@@ -2,6 +2,7 @@ const express = require('express');
 const mongo = require('mongoose');
 const User = require('./models/user.model');
 const bcrypt = require('bcryptjs');
+const authRoute = require('./router/auth.router');
 require('dotenv').config();
 
 const app = express();
@@ -23,7 +24,7 @@ const PORT = process.env.PORT || 7777;
       console.log('Admin is not present');
       const user = await User.create({
         name: 'Haardik Sharma',
-        userId: "Admin",
+        userId: 'Admin',
         email: 'hardik@gmail.com',
         password: bcrypt.hashSync('Welcome123', 8),
         userType: 'ADMIN',
@@ -36,6 +37,10 @@ const PORT = process.env.PORT || 7777;
     console.log('Error', error);
   }
 })();
+
+app.use(express.json());
+// Stich the auth route
+app.use('/crm/api/v1', authRoute);
 
 // run the server
 app.listen(PORT, () => {
