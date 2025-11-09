@@ -2,11 +2,7 @@ const User = require('../models/user.model');
 const constant = require('../utils/constant');
 
 exports.verifyUserRequest = async (req, res, next) => {
-  const name = req.body.name;
-  const userId = req.body.userId;
-  const email = req.body.email;
-  const password = req.body.password;
-  const userType = req.body.userType;
+  const { name, userId, email, password, userType } = req.body;
 
   if (!name) {
     res.status(400).send({
