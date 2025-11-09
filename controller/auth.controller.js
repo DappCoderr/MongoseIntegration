@@ -3,15 +3,16 @@
  * userType (userStatus) - Customer (A) | Admin (P) | Engineer (P)
  */
 const User = require('../models/user.model');
+const constant = require('../utils/constant');
 const bcrypt = require('bcryptjs');
 
 exports.signUp = async (req, res) => {
   let userStatus = req.body.userStatus;
 
-  if (!req.body.userType || req.body.userType === 'CUSTOMER') {
-    userStatus = 'APPROVED';
+  if (!req.body.userType || req.body.userType === constant.userTypes.customer) {
+    userStatus = constant.userStatus.approved;
   } else {
-    userStatus = 'PENDING';
+    userStatus = constant.userStatus.pending;
   }
 
   const userObj = {
