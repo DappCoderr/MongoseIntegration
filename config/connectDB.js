@@ -1,11 +1,11 @@
-const mongo = require('mongoose');
-const bcrypt = require('bcryptjs');
-const User = require('../models/user.model');
+import mongoose from "mongoose";
+import bcrypt from 'bcryptjs';
+import User from '../models/user.model';
 
-exports.connectDB = async () => {
+export const connectDB = async () => {
   try {
     // connection setup
-    await mongo.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/crm');
+    await mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/crm');
 
     // check if admin is present
     const userID = await User.findOne({ userId: 'Admin' });

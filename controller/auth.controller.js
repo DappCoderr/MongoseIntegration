@@ -2,12 +2,12 @@
  * Logic to signUp user.
  * userType (userStatus) - Customer (A) | Admin (P) | Engineer (P)
  */
-const User = require('../models/user.model');
-const constant = require('../utils/constant');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+import User from '../models/user.model';
+import { constant } from '../utils/constant';
+import bcrypt from 'bcryptjs';
+import jwt from "jsonwebtoken"
 
-exports.signUp = async (req, res) => {
+export const signUp = async (req, res) => {
   try {
     const { name, userStatus, userId, email, password, userType } = req.body;
 
@@ -21,7 +21,7 @@ exports.signUp = async (req, res) => {
       name: name,
       userId: userId,
       email: email,
-      password: bcrypt.hashSync(req.body.password, 8),
+      password: bcrypt.hashSync(password, 8),
       userType: userType,
       userStatus: userStatus,
     };
@@ -37,7 +37,7 @@ exports.signUp = async (req, res) => {
   }
 };
 
-exports.signIn = async (req, res) => {
+export const signIn = async (req, res) => {
   try {
     const { userId, password } = req.body;
     const user = await User.findOne({ userId });

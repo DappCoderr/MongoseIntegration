@@ -1,7 +1,7 @@
-const express = require('express');
-const authSignUp = require('./auth.router');
+import express from "express"
+import authSignUp from "./auth.router"
 const route = express.Router();
 
 route.use('/auth', authSignUp);
 
-module.exports = route;
+export default route

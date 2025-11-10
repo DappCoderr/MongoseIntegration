@@ -1,9 +1,11 @@
-const express = require('express');
+import express from "express"
+import { signIn } from "../../controller/auth.controller";
+import { signUp } from "../../controller/auth.controller";
+import verifyUserRequest from "../../middleWare/VerifyUserRequest.mw"
+
 const route = express.Router();
-const authController = require('../../controller/auth.controller');
-const userSignUpRequestMW = require('../../middleWare/VerifyUserRequest.mw');
 
-route.post('/signup', userSignUpRequestMW.verifyUserRequest, authController.signUp);
-route.post('/signin', authController.signIn);
+route.post('/signup', verifyUserRequest, signUp);
+route.post('/signin', signIn);
 
-module.exports = route;
+export default route;

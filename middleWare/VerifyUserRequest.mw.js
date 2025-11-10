@@ -1,7 +1,7 @@
-const User = require('../models/user.model');
-const constant = require('../utils/constant');
+import User from '../models/user.model';
+import { constant } from '../utils/constant';
 
-exports.verifyUserRequest = async (req, res, next) => {
+export const verifyUserRequest = async (req, res, next) => {
   const { name, userId, email, password, userType } = req.body;
 
   if (!name) {

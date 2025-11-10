@@ -1,7 +1,9 @@
-const express = require('express');
-const db = require('./config/connectDB');
-const apiRoute = require('./router/api.router');
-require('dotenv').config();
+import express from "express";
+import dotenv from "dotenv"
+import db from "./config/connectDB"
+import apiRoute from "./router/api.router"
+
+dotenv.config()
 
 const app = express();
 const PORT = process.env.PORT || 7777;

@@ -1,4 +1,4 @@
-module.exports = {
+export const constant = {
   userTypes: {
     customer: 'CUSTOMER',
     admin: 'ADMIN',
