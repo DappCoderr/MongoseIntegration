@@ -8,12 +8,6 @@ export const adminAuth = async(req, res, next) => {
     const id = req.params.id
 
     const user = await User.findOne({userId: id})
-    if(user == null){
-        res.status(404).send({
-            message: "Bag Request: user id does not exist"
-        })
-    }
-    console.log(user)
 
     if(!accessToken){
         res.status(400).send({
