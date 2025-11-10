@@ -62,3 +62,21 @@ export const verifyUserRequest = async (req, res, next) => {
 
   next();
 };
+
+export const verifyUserRequestUserStatusAndUserType = (req, res, next) => {
+  const {userType,  userStatus} = req.body
+  
+  if(!userType || !Object.values(constant.userTypes).includes(userType)){
+    return res.status(400).send({
+      message: "Bag request: userType is wrong!"
+    })
+  }
+
+  if(!userStatus || !Object.values(constant.userStatus).includes(userStatus)){
+    return res.status(400).send({
+      message: "Bag request: userStatus is wrong!"
+    })
+  }
+
+  next()
+}
