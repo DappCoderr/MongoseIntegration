@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import bcrypt from 'bcryptjs';
-import User from '../models/user.model';
+import User from '../models/user.model.js';
 
 export const connectDB = async () => {
   try {

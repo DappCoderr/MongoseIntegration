@@ -1,7 +1,7 @@
 import express from "express"
-import { signIn } from "../../controller/auth.controller";
-import { signUp } from "../../controller/auth.controller";
-import verifyUserRequest from "../../middleWare/VerifyUserRequest.mw"
+import { signIn } from "../../controller/auth.controller.js";
+import { signUp } from "../../controller/auth.controller.js";
+import {verifyUserRequest} from "../../middleWare/VerifyUserRequest.mw.js"
 
 const route = express.Router();
 

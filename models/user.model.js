@@ -1,5 +1,5 @@
 import mongoose from "mongoose"
-import constant from "../utils/constant"
+import {constant} from "../utils/constant.js"
 
 const userSchema = new mongoose.Schema(
   {

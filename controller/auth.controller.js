@@ -2,14 +2,14 @@
  * Logic to signUp user.
  * userType (userStatus) - Customer (A) | Admin (P) | Engineer (P)
  */
-import User from '../models/user.model';
-import { constant } from '../utils/constant';
 import bcrypt from 'bcryptjs';
 import jwt from "jsonwebtoken"
+import User from '../models/user.model.js';
+import {constant} from '../utils/constant.js';
 
 export const signUp = async (req, res) => {
   try {
-    const { name, userStatus, userId, email, password, userType } = req.body;
+    let { name, userStatus, userId, email, password, userType } = req.body;
 
     if (!req.body.userType || req.body.userType === constant.userTypes.customer) {
       userStatus = constant.userStatus.approved;

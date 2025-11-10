@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv"
-import db from "./config/connectDB"
-import apiRoute from "./router/api.router"
+import {connectDB} from "./config/connectDB.js"
+import apiRoute from "./router/api.router.js"
 
 dotenv.config()
 
@@ -14,5 +14,5 @@ app.use('/crm/api', apiRoute);
 // run the server
 app.listen(PORT, () => {
   console.log(`Server started and listening on PORT - ${PORT}`);
-  db.connectDB();
+  connectDB();
 });

@@ -1,5 +1,5 @@
-import User from '../models/user.model';
-import { constant } from '../utils/constant';
+import User from '../models/user.model.js';
+import {constant} from '../utils/constant.js';
 
 export const verifyUserRequest = async (req, res, next) => {
   const { name, userId, email, password, userType } = req.body;
