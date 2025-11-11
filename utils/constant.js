@@ -9,4 +9,9 @@ export const constant = {
     pending: 'PENDING',
     blocked: 'BLOCKED',
   },
+  ticketStatus: {
+    open: 'OPEN',
+    close: 'CLOSE',
+    blocked: 'BLOCKED',
+  },
 };
