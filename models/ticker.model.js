@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { constant } from "../utils/constant";
+import { constant } from "../utils/constant.js";
 
 const ticketSchema = new mongoose.Schema({
     title : {
@@ -10,6 +10,11 @@ const ticketSchema = new mongoose.Schema({
         type: String,
         require: true
     },
+    ticketPriority: {
+        type: Number,
+        require: true,
+        default: 4
+    },
     ticketStatus: {
         type: String,
         default: constant.ticketStatus.open,
@@ -19,7 +24,9 @@ const ticketSchema = new mongoose.Schema({
         type: String,
         require: true
     },
-    assigner
+    assigner: {
+        type: String
+    }
 })
 
 const Ticket = mongoose.model("Ticket", ticketSchema)

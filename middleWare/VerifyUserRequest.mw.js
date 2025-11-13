@@ -63,7 +63,7 @@ export const verifyUserRequest = async (req, res, next) => {
   next();
 };
 
-export const verifyUserRequestUserStatusAndUserType = (req, res, next) => {
+export const verifyUserStatusAndUserType = (req, res, next) => {
   const {userType,  userStatus} = req.body
   
   if(!userType || !Object.values(constant.userTypes).includes(userType)){

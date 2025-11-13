@@ -2,12 +2,9 @@ import jwt from "jsonwebtoken";
 import User from "../models/user.model.js";
 import { constant } from "../utils/constant.js";
 
-export const adminAuth = async(req, res, next) => {
+export const verifyToken = async(req, res, next) => {
     const secret = process.env.SCERET;
     const accessToken = req.headers["x-access-token"];
-    const id = req.params.id
-
-    const user = await User.findOne({userId: id})
 
     if(!accessToken){
         res.status(400).send({
