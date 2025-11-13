@@ -69,7 +69,7 @@ export const signIn = async (req, res) => {
       return res.status(500).send({ message: 'Server configuration error.' });
     }
 
-    const token = jwt.sign({ id: user.userId }, secret, { expiresIn: 1200 });
+    const token = jwt.sign({ id: user.userId, userType: user.userType }, secret, { expiresIn: 1200 });
 
     return res.status(201).send({
       name: user.name,

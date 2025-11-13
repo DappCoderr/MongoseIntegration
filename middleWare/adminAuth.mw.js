@@ -19,6 +19,7 @@ export const verifyToken = async(req, res, next) => {
             })
         }
         req.userId = decoded.id
+        req.userType = decoded.userType
     })
 
     next()

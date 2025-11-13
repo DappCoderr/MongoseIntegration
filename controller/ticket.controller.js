@@ -32,7 +32,6 @@ export const createTicket = async(req, res) => {
 export const getAllTickets = async(req, res) => {
     try {
         const tickets = await Ticket.find()
-        console.log("Ticket controller, get all tickets: ", tickets)
         res.status(200).send(tickets)
     } catch (error) {
         console.log("Error white fetching all tickets: ", error)
@@ -62,14 +61,38 @@ export const getAllTicketsByUserId = async(req, res) => {
     }
 }
 
-export const updateTicketById = async(req, res) => {
+export const updateCustomerTicketById = async(req, res) => {
     try {
         const {title, description} = req.body
         const {id} = req.params
+        const type = req.userType
+        if(type != constant.userTypes.customer){
+            return res.status(403).send({ message: "Access denied" });
+        }
         const ticket = await Ticket.findOneAndUpdate({_id: id}, {title, description}, {new:true}).exec()
         res.status(200).send({ticket})
     } catch (error) {
         console.log("Error while updating the user request")
+        res.status(400).send({
+            message: "Request Fail"
+        })
+    }
+}
+
+export const updateCustomerTicketByEngineerAndAdmin = async(req, res) => {
+    try {
+        const {id} = req.params
+        const type = req.userType
+        console.log("get the type of the user: ", type)
+        if (type === constant.userTypes.admin || type === constant.userTypes.engineer) {
+            const {title, description, ticketPriority, ticketStatus, assigner} = req.body
+            const newTicket = await Ticket.findOneAndUpdate({_id: id}, {title:title, description:description, ticketPriority:ticketPriority, ticketStatus:ticketStatus, assigner:assigner}, {new:true}).exec()
+            res.status(400).send({newTicket})
+        }else{
+            return res.status(403).send({ message: "Access denied" });
+        }
+    } catch (error) {
+        console.log("Error getting while updating customer ticket by engineer and admin")
         res.status(400).send({
             message: "Request Fail"
         })
