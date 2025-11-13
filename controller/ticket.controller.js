@@ -46,7 +46,6 @@ export const getAllTicketsByUserId = async(req, res) => {
     try {
         let ticket;
         const user = await User.findOne({userId: req.userId})
-        console.log("User: ",user)
         if(user.userType === constant.userTypes.customer){
             ticket = await Ticket.find({repoter:req.userId})
         }else if(user.userType === constant.userTypes.engineer){
@@ -54,12 +53,25 @@ export const getAllTicketsByUserId = async(req, res) => {
         }else{
             ticket = await Ticket.find({assigner:req.userId})
         }
-        console.log("Ticket controller, get all tickets: ", ticket)
         res.status(200).send(ticket)
     } catch (error) {
         console.log("Error white fetching ticket by id: ", error)
         res.status(400).send({
             message: "Request Fail"
         })   
+    }
+}
+
+export const updateTicketById = async(req, res) => {
+    try {
+        const {title, description} = req.body
+        const {id} = req.params
+        const ticket = await Ticket.findOneAndUpdate({_id: id}, {title, description}, {new:true}).exec()
+        res.status(200).send({ticket})
+    } catch (error) {
+        console.log("Error while updating the user request")
+        res.status(400).send({
+            message: "Request Fail"
+        })
     }
 }
