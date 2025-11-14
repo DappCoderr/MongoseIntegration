@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-new mongoose.Schema({
+const commentSchema = new mongoose.Schema({
     content: {
         type: String,
         require: true
@@ -15,3 +15,7 @@ new mongoose.Schema({
         require: true
     }
 }, {timestamps: true})
+
+const comment = mongoose.model("Comment", commentSchema)
+
+export default comment
